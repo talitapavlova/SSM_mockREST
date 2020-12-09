@@ -1,0 +1,2073 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="55119150-368d-405e-85e8-c7533e22ba3d" activeEnvironment="Default" name="RESTMockSpaceManagement" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:restMockService id="81befed0-78f0-4734-8012-9ddc9e5ab520" port="8097" path="/" host="localhost" name="RESTMockService" docroot=""><con:settings/><con:properties/><con:restMockAction name="/v1/private/roomstatus/building/{buildingId}/floor/{floor}/meetingrooms" method="GET" resourcePath="/v1/private/roomstatus/building" id="1b997962-39e3-4248-8ed8-ee1e3c9aebcf"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="Response 1" id="ba1e1677-9411-49ee-8d36-bd659c5f01e8" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>def floor = mockRequest.getPath().split("/")[-2]
+context.setProperty("f", floor)
+
+def building = mockRequest.getPath().split("/")[-4]
+context.setProperty("b", building)</con:script><con:responseContent>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": ${b},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176073045827,
+              56.152459973954
+            ],
+            [
+              10.176172912719,
+              56.152508596882
+            ],
+            [
+              10.176130858498,
+              56.152535393249
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176073045827,
+              56.152459973954
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": [
+          {
+            "from": "2020-12-08T14:30:00.0000000+01:00",
+            "to": "2020-12-08T15:30:00.0000000+01:00"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0010.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176229998609,
+              56.152487080409
+            ],
+            [
+              10.176373414722,
+              56.152556906398
+            ],
+            [
+              10.176287268067,
+              56.152611797763
+            ],
+            [
+              10.176143851954,
+              56.152541971874
+            ],
+            [
+              10.176229998609,
+              56.152487080409
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 2
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id":  "urn:epc:id:sgln:10000005.0011.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176381223583,
+              56.152560708349
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.1764284611,
+              56.152681562007
+            ],
+            [
+              10.176294168752,
+              56.152616178385
+            ],
+            [
+              10.176381223583,
+              56.152560708349
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 3
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0000.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.173770550497,
+              56.152353147499
+            ],
+            [
+              10.174656871102,
+              56.151554040247
+            ],
+            [
+              10.17583167865,
+              56.150893693121
+            ],
+            [
+              10.176464679978,
+              56.150609830009
+            ],
+            [
+              10.177414181969,
+              56.150738315677
+            ],
+            [
+              10.178766015313,
+              56.151114806092
+            ],
+            [
+              10.178776744149,
+              56.15181100484
+            ],
+            [
+              10.178797010191,
+              56.152902918682
+            ],
+            [
+              10.178196195371,
+              56.1529955424
+            ],
+            [
+              10.17550325752,
+              56.153153898563
+            ],
+            [
+              10.173770550497,
+              56.152353147499
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Locality",
+        "name": "Systematic",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0001.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Floor",
+        "name": "40E 1st Floor",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0002.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Building",
+        "name": "Søren Frichs Vej 40E",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0003.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17646333816,
+              56.1525648225
+            ],
+            [
+              10.176380540476,
+              56.152524510246
+            ],
+            [
+              10.176418901125,
+              56.152500067366
+            ],
+            [
+              10.176501698808,
+              56.152540379645
+            ],
+            [
+              10.17646333816,
+              56.1525648225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A4.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0004.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176637005848,
+              56.152548680508
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176473334755,
+              56.152569689605
+            ],
+            [
+              10.176562917622,
+              56.152512608672
+            ],
+            [
+              10.176637005848,
+              56.152548680508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A5.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0005.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17637549533,
+              56.152522053881
+            ],
+            [
+              10.176289162346,
+              56.152480020324
+            ],
+            [
+              10.176328103392,
+              56.152455207594
+            ],
+            [
+              10.176414436376,
+              56.152497241178
+            ],
+            [
+              10.17637549533,
+              56.152522053881
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 10,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A3.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0006.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.175867367779,
+              56.152407105541
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.10",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0007.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176024247174,
+              56.152307143736
+            ],
+            [
+              10.176253499099,
+              56.15241876166
+            ],
+            [
+              10.176214448852,
+              56.152443643994
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0009.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176216558235,
+              56.152480536596
+            ],
+            [
+              10.176182589822,
+              56.152502180815
+            ],
+            [
+              10.176082945292,
+              56.152453666141
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 12,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0013.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176509742514,
+              56.152587415675
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0014.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang2",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    }
+  ]
+}</con:responseContent></con:response><con:response name="Response 2" id="feb8a335-55fa-4c2d-a99b-e6dce6e605d5" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>def floor = mockRequest.getPath().split("/")[-2]
+context.setProperty("f", floor)
+
+def building = mockRequest.getPath().split("/")[-4]
+context.setProperty("b", building)</con:script><con:responseContent>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": ${b},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176073045827,
+              56.152459973954
+            ],
+            [
+              10.176172912719,
+              56.152508596882
+            ],
+            [
+              10.176130858498,
+              56.152535393249
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176073045827,
+              56.152459973954
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 2
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": [
+          {
+            "from": "2020-12-08T14:30:00.0000000+01:00",
+            "to": "2020-12-08T15:30:00.0000000+01:00"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0010.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176229998609,
+              56.152487080409
+            ],
+            [
+              10.176373414722,
+              56.152556906398
+            ],
+            [
+              10.176287268067,
+              56.152611797763
+            ],
+            [
+              10.176143851954,
+              56.152541971874
+            ],
+            [
+              10.176229998609,
+              56.152487080409
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 6
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id":  "urn:epc:id:sgln:10000005.0011.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176381223583,
+              56.152560708349
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.1764284611,
+              56.152681562007
+            ],
+            [
+              10.176294168752,
+              56.152616178385
+            ],
+            [
+              10.176381223583,
+              56.152560708349
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 1
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0000.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.173770550497,
+              56.152353147499
+            ],
+            [
+              10.174656871102,
+              56.151554040247
+            ],
+            [
+              10.17583167865,
+              56.150893693121
+            ],
+            [
+              10.176464679978,
+              56.150609830009
+            ],
+            [
+              10.177414181969,
+              56.150738315677
+            ],
+            [
+              10.178766015313,
+              56.151114806092
+            ],
+            [
+              10.178776744149,
+              56.15181100484
+            ],
+            [
+              10.178797010191,
+              56.152902918682
+            ],
+            [
+              10.178196195371,
+              56.1529955424
+            ],
+            [
+              10.17550325752,
+              56.153153898563
+            ],
+            [
+              10.173770550497,
+              56.152353147499
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Locality",
+        "name": "Systematic",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0001.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Floor",
+        "name": "40E 1st Floor",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0002.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Building",
+        "name": "Søren Frichs Vej 40E",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0003.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17646333816,
+              56.1525648225
+            ],
+            [
+              10.176380540476,
+              56.152524510246
+            ],
+            [
+              10.176418901125,
+              56.152500067366
+            ],
+            [
+              10.176501698808,
+              56.152540379645
+            ],
+            [
+              10.17646333816,
+              56.1525648225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 8
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A4.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0004.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176637005848,
+              56.152548680508
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176473334755,
+              56.152569689605
+            ],
+            [
+              10.176562917622,
+              56.152512608672
+            ],
+            [
+              10.176637005848,
+              56.152548680508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A5.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0005.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17637549533,
+              56.152522053881
+            ],
+            [
+              10.176289162346,
+              56.152480020324
+            ],
+            [
+              10.176328103392,
+              56.152455207594
+            ],
+            [
+              10.176414436376,
+              56.152497241178
+            ],
+            [
+              10.17637549533,
+              56.152522053881
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 10,
+          "current": 8
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A3.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0006.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.175867367779,
+              56.152407105541
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 3
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.10",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0007.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176024247174,
+              56.152307143736
+            ],
+            [
+              10.176253499099,
+              56.15241876166
+            ],
+            [
+              10.176214448852,
+              56.152443643994
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 4
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0009.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176216558235,
+              56.152480536596
+            ],
+            [
+              10.176182589822,
+              56.152502180815
+            ],
+            [
+              10.176082945292,
+              56.152453666141
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 12,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0013.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176509742514,
+              56.152587415675
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0014.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang2",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    }
+  ]
+}</con:responseContent></con:response><con:response name="Response 3" id="83400241-1dc4-4ea2-ac70-b1275c7a8c8d" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>def floor = mockRequest.getPath().split("/")[-2]
+context.setProperty("f", floor)
+
+def building = mockRequest.getPath().split("/")[-4]
+context.setProperty("b", building)</con:script><con:responseContent>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": ${b},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176073045827,
+              56.152459973954
+            ],
+            [
+              10.176172912719,
+              56.152508596882
+            ],
+            [
+              10.176130858498,
+              56.152535393249
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176073045827,
+              56.152459973954
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": [
+          {
+            "from": "2020-12-08T14:30:00.0000000+01:00",
+            "to": "2020-12-08T15:30:00.0000000+01:00"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0010.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176229998609,
+              56.152487080409
+            ],
+            [
+              10.176373414722,
+              56.152556906398
+            ],
+            [
+              10.176287268067,
+              56.152611797763
+            ],
+            [
+              10.176143851954,
+              56.152541971874
+            ],
+            [
+              10.176229998609,
+              56.152487080409
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.40",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id":  "urn:epc:id:sgln:10000005.0011.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176381223583,
+              56.152560708349
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.1764284611,
+              56.152681562007
+            ],
+            [
+              10.176294168752,
+              56.152616178385
+            ],
+            [
+              10.176381223583,
+              56.152560708349
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 6
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0000.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.173770550497,
+              56.152353147499
+            ],
+            [
+              10.174656871102,
+              56.151554040247
+            ],
+            [
+              10.17583167865,
+              56.150893693121
+            ],
+            [
+              10.176464679978,
+              56.150609830009
+            ],
+            [
+              10.177414181969,
+              56.150738315677
+            ],
+            [
+              10.178766015313,
+              56.151114806092
+            ],
+            [
+              10.178776744149,
+              56.15181100484
+            ],
+            [
+              10.178797010191,
+              56.152902918682
+            ],
+            [
+              10.178196195371,
+              56.1529955424
+            ],
+            [
+              10.17550325752,
+              56.153153898563
+            ],
+            [
+              10.173770550497,
+              56.152353147499
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Locality",
+        "name": "Systematic",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0001.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Floor",
+        "name": "40E 1st Floor",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0002.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175850869691,
+              56.152408982662
+            ],
+            [
+              10.176024373722,
+              56.152298906774
+            ],
+            [
+              10.176515351034,
+              56.152538993044
+            ],
+            [
+              10.176562584612,
+              56.152509026853
+            ],
+            [
+              10.17664291782,
+              56.152548309412
+            ],
+            [
+              10.176422180211,
+              56.152688350661
+            ],
+            [
+              10.175850869691,
+              56.152408982662
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Building",
+        "name": "Søren Frichs Vej 40E",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:5:0"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0003.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17646333816,
+              56.1525648225
+            ],
+            [
+              10.176380540476,
+              56.152524510246
+            ],
+            [
+              10.176418901125,
+              56.152500067366
+            ],
+            [
+              10.176501698808,
+              56.152540379645
+            ],
+            [
+              10.17646333816,
+              56.1525648225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 8,
+          "current": 7
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A4.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0004.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176637005848,
+              56.152548680508
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176473334755,
+              56.152569689605
+            ],
+            [
+              10.176562917622,
+              56.152512608672
+            ],
+            [
+              10.176637005848,
+              56.152548680508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A5.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0005.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17637549533,
+              56.152522053881
+            ],
+            [
+              10.176289162346,
+              56.152480020324
+            ],
+            [
+              10.176328103392,
+              56.152455207594
+            ],
+            [
+              10.176414436376,
+              56.152497241178
+            ],
+            [
+              10.17637549533,
+              56.152522053881
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 10,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A3.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0006.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.175867367779,
+              56.152407105541
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 6,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.10",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0007.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176024247174,
+              56.152307143736
+            ],
+            [
+              10.176253499099,
+              56.15241876166
+            ],
+            [
+              10.176214448852,
+              56.152443643994
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 4,
+          "current": 2
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.30",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0009.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176216558235,
+              56.152480536596
+            ],
+            [
+              10.176182589822,
+              56.152502180815
+            ],
+            [
+              10.176082945292,
+              56.152453666141
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 12,
+          "current": 12
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.50",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0013.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.17654742298,
+              56.152605761387
+            ],
+            [
+              10.176515515931,
+              56.152626092066
+            ],
+            [
+              10.175953289878,
+              56.152352356968
+            ],
+            [
+              10.175985196927,
+              56.152332026143
+            ],
+            [
+              10.176509742514,
+              56.152587415675
+            ],
+            [
+              10.17654742298,
+              56.152605761387
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0014.0",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.176116913705,
+              56.152432021895
+            ],
+            [
+              10.176030991606,
+              56.152486770354
+            ],
+            [
+              10.176001220272,
+              56.152472275364
+            ],
+            [
+              10.176087142371,
+              56.152417526884
+            ],
+            [
+              10.176116913705,
+              56.152432021895
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "utilization": {
+          "capacity": 0,
+          "current": 0
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Space",
+        "name": "Gang2",
+        "floor": ${f},
+        "functions": [
+          "urn:serviceLogistics:locations:function:1:3"
+        ],
+        "meetings": null
+      }
+    }
+  ]
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
