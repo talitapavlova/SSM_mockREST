@@ -1,0 +1,8 @@
+Location Function Map:
+
+urn:serviceLogistics:locations:function:0:5			Meeting room
+urn:serviceLogistics:locations:function:0:2			Office
+urn:serviceLogistics:locations:function:5:0			Building
+urn:serviceLogistics:locations:function:5:0:0		Floor
+urn:serviceLogistics:locations:function:1:3			Hallway
+urn:serviceLogistics:locations:function:0:7:1		Kitchen
