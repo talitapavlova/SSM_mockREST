@@ -2070,4 +2070,422 @@ context.setProperty("b", building)</con:script><con:responseContent>{
       }
     }
   ]
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/v1/private/roomoccupancy/building/{buildingId}/floor/{floor}/timeperiod/{date1}/{date2}" method="GET" resourcePath="/v1/private/roomoccupancy/building/{buildingId}/floor/{floor}/timeperiod/{date1}/{date2}" id="89e7de65-ed31-495e-a776-cde5f87c8c30"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="Response 1" id="4cc15378-3116-4802-94f9-8238e4ef49cf" httpResponseStatus="200"><con:settings/><con:responseContent>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0008.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.66,
+          "capacityUtilization": 0.78  
+		  "meetingsNoShows": 0.18  
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.40",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0010.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.34,
+          "capacityUtilization": 0.40 
+		  "meetingsNoShows%: null 
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.40",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0011.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.60,
+          "capacityUtilization": 0.89 
+		  "meetingsNoShows": null  
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.50",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0003.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.45,
+          "capacityUtilization": 0.50 
+		  "meetingsNoShows": 0.30 
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A4.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0004.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.45,
+          "capacityUtilization": 0.55  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A5.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+		{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0005.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0. 74,
+          "capacityUtilization": 0.70  
+		  "meetingsNoShows": 0.20
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A3.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0006.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.75,
+          "capacityUtilization": 0.80  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.10",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0007.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.65,
+          "capacityUtilization": 0.35  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+		{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0009.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.20,
+          "capacityUtilization": 0.25
+		  "meetingsNoShows": 0.80
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.50",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    }
+  ]
+}</con:responseContent></con:response><con:response name="Response 2" id="40043419-2573-4139-9738-30823d7d40d1" httpResponseStatus="200"><con:settings/><con:responseContent>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0008.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.55,
+          "capacityUtilization": 0.75  
+		  "meetingsNoShows": 0.20  
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.40",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0010.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.25,
+          "capacityUtilization": 0.30 
+		  "meetingsNoShows%: null 
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.40",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0011.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.55,
+          "capacityUtilization": 0.75 
+		  "meetingsNoShows": null  
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A2.50",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0003.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.45,
+          "capacityUtilization": 0.47 
+		  "meetingsNoShows": 0.43 
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A4.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0004.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.45,
+          "capacityUtilization": 0.47  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A5.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+		{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0005.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.80,
+          "capacityUtilization": 0.92  
+		  "meetingsNoShows": 0.20
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A3.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0006.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.75,
+          "capacityUtilization": 0.80  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.10",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0007.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.65,
+          "capacityUtilization": 0.20  
+		  "meetingsNoShows": null
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.30",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:2"
+        ]
+      }
+    },
+		{
+      "type": "Feature",
+      "id": "urn:epc:id:sgln:10000005.0009.0",
+      "properties": {
+        "statistics": {
+          "occupationRate": 0.30,
+          "capacityUtilization": 0.25
+		  "meetingsNoShows": 0.80
+        },
+        "locationType": "urn:serviceLogistics:locations:type:Room",
+        "name": "A1.50",
+        "floor": 1,
+        "functions": [
+          "urn:serviceLogistics:locations:function:0:5"
+        ]
+      }
+    }
+  ]
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/v1/private/roomoccupancy/building/{buildingId}/floor/{floor}/timeperiod/{date1}/{date2}" method="POST" resourcePath="/v1/private/roomoccupancy/building/{buildingId}/floor/{floor}/timeperiod/{date1}/{date2}" id="b36f3a52-21a3-4dc0-82e9-ced8f6653a53"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
